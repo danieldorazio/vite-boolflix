@@ -14,7 +14,7 @@ export default {
     <section class="my_searchBar">
         <h1>searchBar</h1>
         <label for="searchBar">searchBar</label>
-        <input type="text" id="searchBar" name="searchBar" v-model.trim="this.store.searchText">
+        <input type="search" id="searchBar" placeholder="cerca nome" v-model.trim="this.store.searchText">
         <button @click.stop="$emit('search-name')">chiama</button>
     </section>
 </template>

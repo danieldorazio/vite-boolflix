@@ -20,10 +20,17 @@
     methods: {
       searchName () {
         axios
-          .get(this.store.apiUrl)
+          .get(this.store.apiUrl, {
+            params: {
+              api_key: this.store.apiKey,
+              query: this.store.searchText,
+              
+            }
+          })
           .then((resp) => {
             this.store.arrayMovies = resp.data.results
-            console.log(this.store.arrayMovies[0]);
+            console.log(this.store.arrayMovies);
+            console.log(this.store.searchText);
           })
       }
     }
