@@ -1,22 +1,33 @@
 <script>
-import { store } from "../store"
+// import { store } from "../store"
 
 export default {
-    data() {
-        return {
-            store,
-        }
-    }
+    props: {
+        arrayMovies: Object,
+    },
+
+    // data() {
+    //     return {
+    //         store,
+    //     }
+    // }
 }
 </script>
 
 <template>
     <section class="my_MoviesList">
-        <ul>
-            <li v-for="(movie, index) in this.store.arrayMovies" :key="movie.id">
+            <!-- <div v-for="(movie, index) in arrayMovies" :key="movie.id">
                 {{ movie.title }}/ {{ movie.original_title }}/ {{ movie.original_language }}/ {{ movie.vote_average }}
-            </li>
-        </ul>
+            </div> -->
+            <!-- <div v-for="(movie, index) in arrayMovies" :key="movie.id">
+                {{ movie.title }}/ {{ movie.original_title }}/ {{ movie.original_language }}/ {{ movie.vote_average }}
+            </div> -->
+        
+            <div>{{arrayMovies.title}}</div> 
+            <div>{{arrayMovies.original_title}}</div> 
+            <div>{{arrayMovies.original_language}}</div> 
+            <div>{{arrayMovies.vote_average}}</div> 
+            <hr>
     </section>
 </template>
 

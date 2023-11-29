@@ -1,8 +1,8 @@
 <script >
-  import { store } from "./store.js"
+  import { store } from "./store.js";
   import axios from "axios";
-  import AppSearchBar from "./components/AppSearchBar.vue"
-  import AppMoviesList from "./components/AppMoviesList.vue"
+  import AppSearchBar from "./components/AppSearchBar.vue";
+  import AppMoviesList from "./components/AppMoviesList.vue";
   
 
   export default {
@@ -42,8 +42,9 @@
 <template>
   <header>
     <AppSearchBar @search-name="searchName"/>
-    <div>{{ this.store.searchText }}</div>
-    <AppMoviesList />
+    <!-- <div>{{ this.store.arrayMovies}}</div>  -->
+    <AppMoviesList v-for="(movie, index) in this.store.arrayMovies"  :key="movie.id" :arrayMovies="movie" />
+  
   </header>
 </template>
 
