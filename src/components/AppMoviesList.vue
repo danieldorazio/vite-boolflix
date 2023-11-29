@@ -1,33 +1,34 @@
 <script>
-// import { store } from "../store"
 
 export default {
     props: {
         arrayMovies: Object,
+        imgFlags: Object,
     },
 
-    // data() {
-    //     return {
-    //         store,
+    // methods: {
+    //     getImagePath: function (img) {
+    //         return new URL (`./assets/img/${img}`, import.meta.url).href;
     //     }
-    // }
+    // },
 }
 </script>
 
 <template>
     <section class="my_MoviesList">
-            <!-- <div v-for="(movie, index) in arrayMovies" :key="movie.id">
-                {{ movie.title }}/ {{ movie.original_title }}/ {{ movie.original_language }}/ {{ movie.vote_average }}
-            </div> -->
-            <!-- <div v-for="(movie, index) in arrayMovies" :key="movie.id">
-                {{ movie.title }}/ {{ movie.original_title }}/ {{ movie.original_language }}/ {{ movie.vote_average }}
-            </div> -->
-        
-            <div>{{arrayMovies.title}}</div> 
-            <div>{{arrayMovies.original_title}}</div> 
-            <div>{{arrayMovies.original_language}}</div> 
-            <div>{{arrayMovies.vote_average}}</div> 
-            <hr>
+        <div>{{ arrayMovies.title }}</div>
+        <div>{{ arrayMovies.original_title }}</div>
+        <div>
+            <div class="language">
+                {{ arrayMovies.original_language }}
+            </div>
+            <div class="flags">
+                {{ imgFlags }}
+                <!-- <img :src="getImagePath(it.jpg)" alt=""> -->
+            </div>
+        </div>
+        <div>{{ arrayMovies.vote_average }}</div>
+        <hr>
     </section>
 </template>
 
