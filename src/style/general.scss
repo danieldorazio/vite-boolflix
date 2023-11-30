@@ -1,3 +1,14 @@
-h1{
-    color: green;
-  }
+@use "./partials/mixin" as*;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  @include d-flex;
+}
+

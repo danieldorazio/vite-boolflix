@@ -22,7 +22,7 @@ export default {
 
         imgFound() {
             if (this.arrayElement.poster_path != null) {
-                return `https://image.tmdb.org/t/p/w185${this.arrayElement.poster_path}`
+                return `https://image.tmdb.org/t/p/w342${this.arrayElement.poster_path}`
 
             } else {
                 return this.getImagePath('img-not-found');
@@ -44,30 +44,34 @@ export default {
 
 <template>
     <section class="my_MoviesList">
-        <div>
-            <img :src="imgFound()" alt="">
+        <div class="container">
+            <div>
+                <img :src="imgFound()" alt="">
+            </div>
+            <div>{{ arrayElement.title || arrayElement.name }}</div>
+            <div>{{ arrayElement.original_title || arrayElement.original_name }}</div>
+            <div>
+                <div v-if="hasFlag()" class="flags">
+                    <img :src="getImagePath(arrayElement.original_language)" alt="">
+                </div>
+                <div v-else class="language">
+                    {{ arrayElement.original_language }}
+                </div>
+            </div>
+            <div>
+                <div v-for="n in transformVoteInStar()" v-if="transformVoteInStar()">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div v-for="n in 5" v-else>
+                    <i class="fa-solid fa-star" style="color: #77ebf3;"></i>
+                </div>
+            </div>
         </div>
-        <div>{{ arrayElement.title || arrayElement.name }}</div>
-        <div>{{ arrayElement.original_title || arrayElement.original_name }}</div>
-        <div>
-            <div v-if="hasFlag()" class="flags">
-                <img :src="getImagePath(arrayElement.original_language)" alt="">
-            </div>
-            <div v-else class="language">
-                {{ arrayElement.original_language }}
-            </div>
-        </div>
-        <div>
-            <div v-for="n in transformVoteInStar()" v-if="transformVoteInStar()">
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <div v-for="n in 5" v-else>
-                <i class="fa-solid fa-star" style="color: #77ebf3;"></i>
-            </div>
-        </div>
-        <hr>
     </section>
 </template>
 
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@use "../style/partials/mixin" as*;
+@use "../style/partials/variables" as*;
+</style>

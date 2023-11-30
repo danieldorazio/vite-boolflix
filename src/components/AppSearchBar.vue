@@ -13,11 +13,39 @@ export default {
 
 <template>
     <section class="my_searchBar">
-        <h1>searchBar</h1>
-        <label for="searchBar">searchBar</label>
-        <input type="search" id="searchBar" placeholder="cerca nome" v-model.trim="this.store.searchText">
-        <button @click.stop="$emit('search-name')">chiama</button>
+        <div class="container">
+            <h1>BOOLFLIX</h1>
+            <div class="search">
+                <label for="searchBar">searchBar</label>
+                <input @keyup.enter="$emit('search-name')" type="search" id="searchBar" placeholder="cerca nome" v-model.trim="this.store.searchText">
+            </div>
+        </div>
     </section>
 </template>
 
-<style scoped lang=scss></style>
+<style scoped lang=scss>
+@use "../style/partials/mixin" as*;
+@use "../style/partials/variables" as*;
+
+.my_searchBar {
+    height: 70px;
+    background-color:$bg-color ;
+    @include d-flex;
+
+    // TITOLO
+    h1 {
+        color: red;
+        font-size: 2rem;
+    }
+
+    // SEARCHBAR 
+    .search {
+        label {
+            display: none;
+        }
+        input {
+            padding: .2rem;
+        }
+    }
+}
+</style>

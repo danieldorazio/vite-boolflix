@@ -46,26 +46,46 @@ export default {
 </script>
 
 <template>
-  <header>
-    <AppSearchBar @search-name="searchName" />
+  <div class="wrapper">
+    <header>
+      <AppSearchBar @search-name="searchName" />
+    </header>
 
-    <hr>
-    <div>MOVIES</div>
-    <hr>
+    <main>
 
-    <AppElementList v-for="(movie, index) in store.arrayMovies" :key="movie.id" :arrayElement="movie" />
-
-    <hr>
-    <div> SERIE TV</div>
-    <hr>
-
-    <AppElementList v-for="(tv, index) in store.arrayTv" :key="tv.id" :arrayElement="tv" />
+      <div class="element">MOVIES
+        <button>&LeftArrow;</button>
+        <AppElementList v-for="(movie, index) in store.arrayMovies" :key="movie.id" :arrayElement="movie" />
+        <button>&rightarrow;</button>
+      </div>
 
 
-  </header>
+      <div class="element"> SERIE TV
+        <button>&LeftArrow;</button>
+        <AppElementList v-for="(tv, index) in store.arrayTv" :key="tv.id" :arrayElement="tv" />
+        <button>&rightarrow;</button>
+      </div>
+
+    </main>
+  </div>
 </template>
 
 <style lang="scss">
 @use "./style/general.scss";
+@use "./style/partials/variables" as*;
+@use "./style/partials/mixin" as*;
 @import "@fortawesome/fontawesome-free/css/all.css";
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+
+  // background-color: $bg-color;
+
+  .element {
+    @include d-flex  
+  }
+
+
+}
 </style>
