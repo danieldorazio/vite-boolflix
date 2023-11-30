@@ -1,5 +1,4 @@
 <script>
-
 export default {
     props: {
         arrayTv: Object,
@@ -13,10 +12,29 @@ export default {
 
     methods: {
         getImagePath: function (img) {
-            return new URL(`../assets/flags/${img}.png`, import.meta.url).href;
+            return new URL(`../assets/img/${img}.png`, import.meta.url).href;
         },
         hasFlag() {
             return this.flagsLanguage.includes(this.arrayTv.original_language);
+        },
+        imgFound() {
+            if (this.arrayTv.poster_path != null) {
+                return `https://image.tmdb.org/t/p/w185${this.arrayTv.poster_path}`  //chiedere
+
+            } else {
+                console.log("non ce");
+                return this.getImagePath('img-not-found');
+            }
+        },
+
+        transformVoteInStar() {
+            if (this.arrayTv.vote_average > 2) {
+                let vote = (this.arrayTv.vote_average / 2);
+                vote = Math.floor(vote)
+                return vote
+            } else {
+                return 0;
+            }
         },
     },
 }
@@ -24,21 +42,25 @@ export default {
 
 <template>
     <section class="my_TvList">
-        <div> 
-             <img :src="`https://image.tmdb.org/t/p/w185${arrayTv.poster_path}`" alt="" onerror="this.onerror=null; this.src='https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg';"> <!--..\assets\img\img-not-found.jpg* -->
+        <div>
+            <img :src="imgFound()" alt="">
         </div>
         <div>{{ arrayTv.name }}</div>
         <div>{{ arrayTv.original_name }}</div>
         <div>
             <div v-if="hasFlag()" class="flags">
-                <img 
-                :src="getImagePath(arrayTv.original_language)" alt="">
+                <img :src="getImagePath(arrayTv.original_language)" alt="">
             </div>
             <div v-else class="language">
                 {{ arrayTv.original_language }}
-            </div> 
+            </div>
         </div>
-        <div>{{ arrayTv.vote_average }}</div>
+        <div v-for="n in transformVoteInStar()" v-if="transformVoteInStar()">
+            <i class="fa-solid fa-star"></i>
+        </div>
+        <div v-for="n in 5" v-else>
+            <i class="fa-solid fa-star" style="color: #77ebf3;"></i>
+        </div>
     </section>
     <hr>
 </template>
