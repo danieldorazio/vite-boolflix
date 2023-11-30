@@ -2,15 +2,13 @@
 import { store } from "./store.js";
 import axios from "axios";
 import AppSearchBar from "./components/AppSearchBar.vue";
-import AppMoviesList from "./components/AppMoviesList.vue";
-import AppTvList from "./components/AppTvList.vue";
+import AppElementList from "./components/AppElementList.vue";
 
 
 export default {
   components: {
     AppSearchBar,
-    AppMoviesList,
-    AppTvList,
+    AppElementList,
   },
 
   data() {
@@ -55,13 +53,13 @@ export default {
     <div>MOVIES</div>
     <hr>
 
-    <AppMoviesList v-for="(movie, index) in store.arrayMovies" :key="movie.id" :arrayMovies="movie" />
+    <AppElementList v-for="(movie, index) in store.arrayMovies" :key="movie.id" :arrayElement="movie" />
 
     <hr>
     <div> SERIE TV</div>
     <hr>
 
-    <AppTvList v-for="(tv, index) in store.arrayTv" :key="tv.id" :arrayTv="tv" />
+    <AppElementList v-for="(tv, index) in store.arrayTv" :key="tv.id" :arrayElement="tv" />
 
 
   </header>
