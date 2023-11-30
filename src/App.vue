@@ -21,31 +21,25 @@ export default {
 
   methods: {
     searchName() {
-      axios
-        .get(this.store.apiUrlMovie, {
-          params: {
-            api_key: this.store.apiKey,
-            query: this.store.searchText,
 
-          }
-        })
+      const params = {
+        api_key: this.store.apiKey,
+        query: this.store.searchText,
+      };
+
+      axios
+        .get(`${this.store.apiUrl}/search/movie`, { params })
         .then((resp) => {
           this.store.arrayMovies = resp.data.results
           console.log(this.store.arrayMovies);
-        })
+        });
 
       axios
-        .get(this.store.apiUrlTv, {
-          params: {
-            api_key: this.store.apiKey,
-            query: this.store.searchText,
-
-          }
-        })
+        .get(`${this.store.apiUrl}/search/tv`, { params })
         .then((resp) => {
           this.store.arrayTv = resp.data.results
           console.log(this.store.arrayTv);
-        })
+        });
     },
   }
 };
@@ -60,18 +54,14 @@ export default {
     <hr>
     <div>MOVIES</div>
     <hr>
-    
-    <AppMoviesList v-for="(movie, index) in this.store.arrayMovies" :key="movie.id" 
-    :arrayMovies="movie"
-    :imgFlags="this.store.imgFlags" />
+
+    <AppMoviesList v-for="(movie, index) in store.arrayMovies" :key="movie.id" :arrayMovies="movie" />
 
     <hr>
     <div> SERIE TV</div>
     <hr>
 
-    <AppTvList v-for="(tv, index) in this.store.arrayTv" :key="tv.id" 
-    :arrayTv="tv"
-    :imgFlags="this.store.imgFlags" />
+    <AppTvList v-for="(tv, index) in store.arrayTv" :key="tv.id" :arrayTv="tv" />
 
 
   </header>

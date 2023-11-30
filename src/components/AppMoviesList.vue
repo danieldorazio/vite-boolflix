@@ -3,14 +3,22 @@
 export default {
     props: {
         arrayMovies: Object,
-        imgFlags: Object,
     },
 
-    // methods: {
-    //     getImagePath: function (img) {
-    //         return new URL (`./assets/img/${img}`, import.meta.url).href;
-    //     }
-    // },
+    data() {
+        return {
+            flagsLanguage: ["it", "es", "fr", "us", "en"],
+        };
+    },
+
+    methods: {
+        getImagePath: function (img) {
+            return new URL(`../assets/flags/${img}.png`, import.meta.url).href;
+        },
+        hasFlag() {
+            return this.flagsLanguage.includes(this.arrayMovies.original_language);
+        },
+    },
 }
 </script>
 
@@ -19,12 +27,12 @@ export default {
         <div>{{ arrayMovies.title }}</div>
         <div>{{ arrayMovies.original_title }}</div>
         <div>
-            <div class="language">
-                {{ arrayMovies.original_language }}
+            <div v-if="hasFlag()" class="flags">
+                <img 
+                :src="getImagePath(arrayMovies.original_language)" alt="">
             </div>
-            <div class="flags">
-                {{ imgFlags }}
-                <!-- <img :src="getImagePath(it.jpg)" alt=""> -->
+            <div v-else class="language">
+                {{ arrayMovies.original_language }}
             </div>
         </div>
         <div>{{ arrayMovies.vote_average }}</div>

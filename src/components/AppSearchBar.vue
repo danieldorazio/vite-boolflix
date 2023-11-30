@@ -6,7 +6,8 @@ export default {
         return {
             store
         }
-    }
+    },
+    emit: ["search-name"]
 }
 </script>
 
