@@ -54,20 +54,19 @@ export default {
     <main>
 
       <div class="row">
-        <div class="type">MOVIES</div>
+        <h2 class="type">MOVIES</h2>
         <div class="element">
-          <button>&LeftArrow;</button>
           <AppElementList v-for="(movie, index) in store.arrayMovies" :key="movie.id" :arrayElement="movie" />
-          <button>&rightarrow;</button>
         </div>
       </div>
 
 
-      <!-- <div class="element"> SERIE TV
-        <button>&LeftArrow;</button>
-        <AppElementList v-for="(tv, index) in store.arrayTv" :key="tv.id" :arrayElement="tv" />
-        <button>&rightarrow;</button>
-      </div> -->
+      <div class="row">
+        <h2 class="type">SERIE TV</h2>
+        <div class="element">
+          <AppElementList v-for="(tv, index) in store.arrayTv" :key="tv.id" :arrayElement="tv" />
+        </div>
+      </div>
 
     </main>
   </div>
@@ -90,13 +89,20 @@ export default {
 
   main {
     height: $heigth-main;
-    background-color: aquamarine;
+    background-color:$bg-color-main;
 
-    .element {
-      @include d-flex;
-      gap: 10px;
+    .row {
+      .type {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .element {
+        @include d-flex (center, space-between, nowrap, 0px);
+        overflow-x: auto;
+        height: 250px;
+      }
     }
-
 
 
   }

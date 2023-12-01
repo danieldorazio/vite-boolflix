@@ -1,5 +1,7 @@
-@mixin d-flex {
+@mixin d-flex ($align-itmes, $justify-content, $flex-wrap, $gap) {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: $align-itmes;
+    justify-content: $justify-content;
+    flex-wrap: $flex-wrap ;
+    gap: $gap;
 }

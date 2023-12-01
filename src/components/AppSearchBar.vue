@@ -18,6 +18,7 @@ export default {
             <div class="search">
                 <label for="searchBar">searchBar</label>
                 <input @keyup.enter="$emit('search-name')" type="search" id="searchBar" placeholder="cerca nome" v-model.trim="this.store.searchText">
+                <button @click.stop="$emit('search-name')"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     </section>
@@ -30,7 +31,7 @@ export default {
 .my_searchBar {
     height: $heigth-header;
     background-color:$bg-color ;
-    @include d-flex;
+    @include d-flex (center, space-between, wrap, 0px);
 
     // TITOLO
     h1 {
@@ -45,6 +46,15 @@ export default {
         }
         input {
             padding: .2rem;
+        }
+        button {
+            height: 27px;
+            width: 27px;
+            color: red;
+            background-color: $bg-color;
+            border: none;
+            cursor: pointer;
+            
         }
     }
 }

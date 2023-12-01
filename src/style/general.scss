@@ -9,10 +9,14 @@
 .container {
   width: 80%;
   margin: 0 auto;
-  @include d-flex;
+  @include d-flex (center, space-between, wrap, 0px);
 }
 
 .d-none {
   display: none;
+}
+
+.mb-1 {
+  margin-bottom: 10px;
 }
 

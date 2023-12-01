@@ -30,7 +30,7 @@ export default {
 
         imgFound() {
             if (this.arrayElement.poster_path != null) {
-                return `https://image.tmdb.org/t/p/w185${this.arrayElement.poster_path}`
+                return `https://image.tmdb.org/t/p/w342${this.arrayElement.poster_path}`
 
             } else {
                 return this.getImagePath('img-not-found');
@@ -51,10 +51,10 @@ export default {
                 <img :src="imgFound" alt="">
             </div>
             <div class="movie-information">
-                <div> <span>Titolo:</span> {{ arrayElement.title || arrayElement.name }}</div>
-                <div :class="showOriginalTitle"> <span>Titolo Originale:</span> {{ arrayElement.original_title || arrayElement.original_name }}</div>
-                <div>
-                    <div v-if="hasFlag()" class="flags">
+                <div class="mb-1"> <span>Titolo:</span> {{ arrayElement.title || arrayElement.name }}</div>
+                <div class="mb-1" :class="showOriginalTitle"> <span>Titolo Originale:</span> {{ arrayElement.original_title || arrayElement.original_name }}</div>
+                <div class="mb-1">
+                    <div  class="flags" v-if="hasFlag()">
                         <span>Lingua:</span>
                         <img :src="getImagePath(arrayElement.original_language)" alt="">
                     </div>
@@ -63,7 +63,7 @@ export default {
                         {{ arrayElement.original_language }}
                     </div>
                 </div>
-                <div>
+                <div class="vote mb-1">
                     <span>Voto:</span>
                     <div v-for="n in transformVoteInStar">
                         <i class="fa-solid fa-star"></i>
@@ -85,14 +85,23 @@ export default {
 .container.movie {
 
     .movie-poster {
+        width: $width-img-movie-poste;
+        height: $heigth-img-movie-poste;
+
         img {
-            width: $width-img-movie-poste;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 
     .movie-information {
         display: none;
         width: $width-img-movie-poste;
+        height: $heigth-img-movie-poste;
+        width: $width-img-movie-poste;
+        color: white;
+        background-color: $bg-color;
 
     }
 
@@ -102,6 +111,15 @@ export default {
 
     &:hover .movie-information {
         display: block;
+        
+        .flags {
+            @include d-flex (center, start, nowrap, 10px)
+        }
+
+        .vote {
+            @include d-flex (center, space-between, nowrap, 2px)
+        }
+
     }
 
 }
