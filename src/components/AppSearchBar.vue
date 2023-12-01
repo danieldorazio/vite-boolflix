@@ -28,7 +28,7 @@ export default {
 @use "../style/partials/variables" as*;
 
 .my_searchBar {
-    height: 70px;
+    height: $heigth-header;
     background-color:$bg-color ;
     @include d-flex;
 
